@@ -1,0 +1,2 @@
+# QLNongSan
+QUẢN LÝ NÔNG SẢN ASP.NET MVC
