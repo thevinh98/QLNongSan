@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | E-Shopper</title>
+    <link href="/Assets/trangchu/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/bootstrap-theme.css" rel="stylesheet">
+    <link href="/Assets/trangchu/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Assets/trangchu/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/Assets/trangchu/css/price-range.css" rel="stylesheet">
+    <link href="/Assets/trangchu/css/animate.css" rel="stylesheet">
+    <link href="/Assets/trangchu/css/main.css" rel="stylesheet">
+    <link href="/Assets/trangchu/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/Assets/trangchu/js/html5shiv.js"></script>
+    <script src="/Assets/trangchu/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="/Assets/trangchu/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/Assets/trangchu/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Assets/trangchu/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Assets/trangchu/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/Assets/trangchu/images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body>
+    <header id="header">
+        <!--header-->
+        <div class="header_top">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i> +07864430451</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> ninnguyenthi250698@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="https://www.facebook.com/nin.nguyen.1217" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 clearfix">
+                        <div class="logo pull-left">
+                            <a href="index.html"><img src="/Assets/trangchu/images/home/logo.png" alt="" /></a>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8 clearfix">
+                        @{ Html.RenderAction("Topmenu", "Home");}
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+
+        <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            @{ Html.RenderAction("MenuMain", "Home");}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                       
+                            @using (Html.BeginForm("SearchThongTin", "Home"))
+                            {
+
+                                <p>
+
+                                    @Html.TextBox("Search", null) <input type="submit" value="Tìm kiếm" />
+
+                                </p>
+
+
+                            }
+                      
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header-->
+
+    <section id="slider">
+        <!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    @RenderSection("slide", required: false);
+                </div>
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        @*<div class="carousel-inner">
+                                <div class="item active">
+                                    <div class="col-sm-6">
+                                        <h1>CÂY ĂN QUẢ</h1>
+                                        <h2> (Nam Bộ gọi là cây ăn trái) </h2>
+                                        <p>là các loại cây trồng hoặc quả rừng mà trái cây được dùng làm thức ăn riêng biệt hoặc ăn kèm. So với cây lương thực là nguồn cung cấp chính về năng lượng và chất bột cacbohydrat trong khẩu phần thức ăn thì cây ăn quả là nguồn dinh dưỡng quý cho con người về chất khoáng, đặc biệt nhiều vitamin, nhất là các vitamin A và vitamin C rất cần cho cơ thể con người. Tùy theo nguồn gốc, xuất xứ và vùng sinh thái mà co thể chia ra cây ăn quả nhiệt đới, cây ăn quả cận nhiệt đới, cây ăn quả ôn đới,.... </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img src="/Data/image/banner1_traicay.png" class="girl img-responsive" alt="" />
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-sm-6">
+                                        <h1>CÂY LƯƠNG THỰC NGẮN NGÀY</h1>
+                                        <h2>Cây lương thực chính</h2>
+                                        <p>Bốn loại cây lương thực chính của Việt Nam là lúa, ngô, sắn và khoai lang (Ipomoea batatas L.).. </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img src="/Data/image/banner2_caylaunam.png" class="girl img-responsive" alt="" />
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="col-sm-6">
+                                        <h1>CÂY LÂU NĂM TRUYỀN THỐNG</h1>
+                                        <h2>Cây điều</h2>
+                                        <p>Điều là một trong những cây công nghiệp có dầu thích hợp trồng ở các tỉnh miền Nam nước ta, hiện nay để có tới 50 tỉnh trồng điều và diện tích điều sẽ còn tăng cao khi giá trị kinh tế của điều đang được khẳng định nhờ nhân hạt có giá trị xuất khẩu lớn.. </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img src="/Data/image/banner3.png" class="girl img-responsive" alt="" />
+                                    </div>
+                                </div>
+
+                            </div>*@
+                        @{ Html.RenderAction("Banner", "Home");}
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section><!--/slider-->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>NHÓM NÔNG SẢN</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <!--category-productsr-->
+                            <div class="panel panel-default">
+
+                                @{ Html.RenderAction("NhomNS", "Home");}
+
+                            </div>
+
+                        </div>
+                        <div class="brands_products">
+                            <h2>Dấu hiệu mắc bệnh</h2>
+                            <div class="brands-name">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">Cảm thấy khó thở</a></li>
+                                    <li><a href="#">Ho khan, đau họng</a></li>
+                                    <li><a href="#">Sốt cao</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="price-range">
+                            <!--price-range-->
+                            <h2>Cách phòng tránh dịch bệnh</h2>
+                            <div class="brands-name">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li class="linklk"><a href="https://aeonmall-long-bien.com.vn/cac-bien-phap-phong-chong-dich-covid-19-theo-huong-dan-cua-bo-y-te/" target="_blank">Hạn chế ra ngoài tối đa</a></li>
+                                    <li class="linklk"><a href="https://www.vinmec.com/vi/tin-tuc/thong-tin-suc-khoe/suc-khoe-tong-quat/huong-dan-deo-khau-trang-mat-nao-dung/" target="_blank"></span>Khoảng cách, khẩu trang.</a></li>
+                                    <li class="linklk"><a href="https://benhvienphuongdong.vn/rua-tay-dung-cach/" target="_blank"></span>Rửa tay thường xuyên.</a></li>
+                                    <li class="linklk"><a href="https://www.kiena.vn/vi-vn/lau-don-ve-sinh-nha-cua-the-nao-de-phong-chong-dich-cum-corona.html" target="_blank"></span>Vệ sinh nhà cửa.</a></li>
+                                    <li class="linklk"><a href="https://www.hoanmyvanphuc.com/huong-dan-khai-bao-y-te-toan-dan.html" target="_blank"></span>Khai báo y tế.</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="shipping text-center">
+                            <!--shipping-->
+                            <img src="~/Data/image/chongdich.png" alt="" style="width:250px;height:100%" />
+                            <hr />
+                            <img src="~/Data/image/bienphap.png" alt="" style="width:250px;height:100%" />
+                            <hr />
+                            @*<img src="~/Data/image/anh_trai1.png" alt="" style="width:250px;height:100%" />
+                            <hr />
+                            <img src="~/Data/image/anh_trai2.png" alt="" style="width:250px;height:100%" />
+                            <hr />
+                            <img src="~/Data/image/anh_trai3.png" alt="" style="width:250px;height:100%" />*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-9 padding-right">
+                    @RenderBody()
+                </div>
+            </div>
+    </section>
+    <h3 style="color:darkred; margin-left:200px">1 Số video giới thiệu về Nông sản miền Đông Nam Bộ</h3><hr />
+    <div class="row" style="margin-left:200px">
+        <iframe width="300px" height="150px" src="https://www.youtube.com/embed/TAkISw3vA2Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="300px" height="150px" src="https://www.youtube.com/embed/2iTE1Nn4U08" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="300px" height="150px" src="https://www.youtube.com/embed/qmRY_m45UJw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="300px" height="150px" src="https://www.youtube.com/embed/7z-YJQp-GJw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <footer id="footer">
+        @{ Html.RenderAction("Footer", "Home");}
+
+    </footer><!--/Footer-->
+    <script src="/Assets/trangchu/js/jquery-3.4.1.min.js"></script>
+    <script src="/Assets/trangchu/js/jquery.js"></script>
+    <script src="/Assets/trangchu/js/bootstrap.min.js"></script>
+    <script src="/Assets/trangchu/js/jquery.scrollUp.min.js"></script>
+    <script src="/Assets/trangchu/js/price-range.js"></script>
+    <script src="/Assets/trangchu/js/jquery.prettyPhoto.js"></script>
+    <script src="/Assets/trangchu/js/main.js"></script>
+    @RenderSection("GoToUrl", required: false)
+    @RenderSection("jsGH", required: false)
+</body>
+</html>

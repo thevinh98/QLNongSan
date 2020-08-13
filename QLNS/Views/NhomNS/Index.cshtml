@@ -1,0 +1,80 @@
+﻿
+@model PagedList.IPagedList<QLNS.Models.EF.NhomN>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+@section header
+{
+    Danh sách nhóm nông sản
+}
+
+<div class="container">
+    @using (Html.BeginForm("SearchThongTin", "NhomNS"))
+    {
+        @Html.TextBox("search", null, new { @class = "search_texBox" })<input type="submit" value="Search" class="search_input" style="width: 80px;margin-right: 40px;    padding-right: 17px;">
+    }
+    <hr />
+    <a href="/NhomNS/Create" target="_blank" style="font-size: 30px;">Thêm mới nhóm nông sản</a>
+    <br /><br />
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">STT</th>
+                <th class="text-center">Mã nhóm nông sản</th>
+                <th class="text-center">Tên nhóm nông sản</th>
+                <th class="text-center">Tiêu đề URL</th>
+                <th class="text-center">Mã Cha</th>
+                <th class="text-center">Tiêu đề tìm kiếm</th>
+                <th class="text-center">Ngày tạo</th>
+                <th class="text-center">Người tạo</th>
+                <th class="text-center">Ngày sửa</th>
+                <th class="text-center">Người sửa</th>
+                <th class="text-center">Tình trạng</th>
+                <th class="text-center">Từ khóa tìm kiếm</th>
+                <th class="text-center">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody style="color: black">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr id="row_@Model[i].ma_nhom_ns">
+                    <td class="text-center">@(i + 1)</td>
+                    <td class="text-center">@Model[i].ma_nhom_ns</td>
+                    <td class="text-center">@Model[i].ten_nhom_ns</td>
+                    <td class="text-center">@Model[i].tieu_de_url</td>
+                    <td class="text-center">@Model[i].ID_cha</td>
+                    <td class="text-center">@Model[i].tieu_de_tk</td>
+                    <td class="text-center">@Html.Name(@Model[i].ngay_tao.ToShortDateString())</td>
+                    <td class="text-center">@Model[i].nguoi_tao</td>
+                    <td class="text-center">@Html.Name(@Model[i].ngay_sua.ToShortDateString())</td>
+                    <td class="text-center">@Model[i].nguoi_sua</td>
+                    <td class="tinh-trang v-align-middle text-center">@string.Format("{0}", Model[i].tinh_trang == 1 ? "Sử dụng" : "Không sử dụng")</td>
+                    <td class="text-center">@Model[i].tu_khoa_tk</td>
+                    <td class="text-center">
+                        @*<a href="@Url.Action("Delete", new { id = Model[i].ma_chat_luong })"><i>Xóa</i></a>*@
+                        @Ajax.ActionLink("Xóa", "Delete", new { @id = Model[i].ma_nhom_ns }, new AjaxOptions
+                   {
+                       Confirm = "Bạn có chắc chắn muốn xóa?",
+                       OnComplete = "$('#row_" + @Model[i].ma_nhom_ns + "').remove()",
+                       HttpMethod = "Delete"
+                   })
+                        <a href="@Url.Action("Edit", new { id = Model[i].ma_nhom_ns })"><i>Sửa</i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+
+    <!-- Thêm mã phân trang -->
+    <br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+    <!-- Kết thúc -->
+</div>

@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var NongSanMoi = (List<QLNS.Models.EF.NongSan>)ViewBag.NSMoi;
+    var NongSanBC = (List<QLNS.Models.EF.NongSan>)ViewBag.NSBanChay;
+}
+
+    <div class="features_items">
+        <!--features_items-->
+        <h2 class="title text-center">Nông sản mới</h2>
+
+        @foreach (var item in NongSanMoi)
+        {
+            <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <img src="@item.hinh_anh" alt="" style="height:250px; width:100%" />
+                            <b>Giá gốc: @item.gia_goc vnđ/kg</b>
+                            <p style="color:#16b91d">@item.ten_ns</p>
+                        </div>
+                        <div class="product-overlay">
+                            <div class="overlay-content">
+                                <a href="@Url.Action("Detail", "NongSan", new { id = item.ma_ns })" class="btn btn-default view-product"><i class="fa fa-street-view"></i>Xem chi tiết</a>
+                                <a href="@Url.Action("AddItem", "ThanhPhanGH", new { ma_ns=item.ma_ns, sl=1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàngs</a>
+                                @*<a href="/ThanhPhanGH" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>*@
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+        <br />
+        <a href="@Url.Action("Index_All", "Home", null)"  class="btn btn-default view-product" style="color:black;margin-left:350px; font-weight:bold">XEM TẤT CẢ NÔNG SẢN</a><br /><br /><br />
+    </div>
+<div class="recommended_items">
+    <!--recommended_items-->
+    <h2 class="title text-center">SẢN PHẨM BÁN GẦN ĐÂY</h2>
+
+
+    <!--recommended_items-->
+
+    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                @foreach (var a in NongSanBC)
+                {
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="@a.hinh_anh" alt="" style="height:250px; width:100%" />
+                                    <h2>@a.gia_goc</h2>
+                                    <p>@a.ten_ns</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @*<div class="item">
+                @foreach (var a in NongSanBC)
+                {
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="@a.hinh_anh" alt="" style="height:250px; width:100%" />
+                                    <h2>@a.gia_goc</h2>
+                                    <p>@a.ten_ns</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>*@
+        </div>
+        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+
+</div>
+<hr />
+
+
+
+
+
+
+
+
+

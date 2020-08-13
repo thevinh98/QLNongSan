@@ -1,0 +1,18 @@
+﻿@model List<QLNS.Models.EF.NhomN>
+
+
+@foreach (var item in Model)
+{
+    <div class="panel-heading dropdown-toggle usa" style="background-color:    #fe980f; padding: 5px 5px; margin:auto">
+
+        @*<button type="button" class="btn btn-default dropdown-toggle usa" >
+
+            <span class="caret"></span>
+        </button>*@
+
+        <h4 class="panel-title "><a href="@Url.Action("MucNS", "Home", new { id = item.ma_nhom_ns })"> @item.ten_nhom_ns</a></h4>
+
+
+    </div>
+}
+

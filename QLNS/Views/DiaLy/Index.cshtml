@@ -1,0 +1,67 @@
+﻿
+@model PagedList.IPagedList<QLNS.Models.EF.DiaLy>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+@section header
+{
+    Danh sách địa lý
+}
+
+<div class="container">
+    @using (Html.BeginForm("SearchThongTin", "DiaLy"))
+    {
+        @Html.TextBox("search", null, new { @class = "search_texBox" })<input type="submit" value="Search" class="search_input" style="width: 80px;margin-right: 40px;    padding-right: 17px;">
+    }
+
+    <a href="/DiaLy/Create" target="_blank" style="font-size: 30px;">Thêm mới địa lý</a><br /><br />
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">STT</th>
+                <th class="text-center">Mã vị trí</th>
+                <th class="text-center">Địa chỉ</th>
+                <th class="text-center">Mô tả</th>
+                <th class="text-center">Chi tiết</th>
+                <th class="text-center">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody style="color: black">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+            <tr id="row_@Model[i].ma_vi_tri">
+                <td class="text-center">@(i + 1)</td>
+                <td class="text-center">@Model[i].ma_vi_tri</td>
+                <td class="text-center">@Model[i].dia_chi</td>
+                <td class="text-center">@Model[i].mo_ta</td>
+                <td class="text-center">@Model[i].chi_tiet</td>
+
+                <td class="text-center">
+                    @*<a href="@Url.Action("Delete", new { id = Model[i].ma_vi_tri })"><i>Xóa</i></a>*@
+                    @Ajax.ActionLink("Xóa", "Delete", new { @id = Model[i].ma_vi_tri }, new AjaxOptions
+               {
+                   Confirm = "Bạn có chắc chắn muốn xóa?",
+                   OnComplete = "$('#row_" + @Model[i].ma_vi_tri + "').remove()",
+                   HttpMethod = "Delete"
+               })
+                    <a href="@Url.Action("Edit", new { id = Model[i].ma_vi_tri })"><i>Sửa</i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+
+
+    <!-- Thêm mã phân trang -->
+    <br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+    <!-- Kết thúc -->
+</div>

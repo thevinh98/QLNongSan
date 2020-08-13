@@ -1,0 +1,102 @@
+﻿@model PagedList.IPagedList<QLNS.Models.EF.NongSan>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+@section header
+{
+    Danh sách nông sản
+}
+
+    <div class="container">
+        @using (Html.BeginForm("SearchThongTin", "NongSan"))
+        {
+            @Html.TextBox("search", null, new { @class = "search_texBox" })<input type="submit" value="Search" class="search_input" style="width: 80px;margin-right: 40px;    padding-right: 17px;">
+        }
+
+        <a href="/NongSan/Create" target="_blank" style="font-size: 30px;">Thêm mới nông sản</a><br /><br />
+
+        <br />
+
+        <table class="table table-bordered table-hover table-striped" style="width:4000px !important">
+            <thead>
+                <tr>
+                    <th class="text-center">STT</th>
+                    <th class="text-center">Mã nông sản</th>
+                    <th class="text-center">Tên nông sản</th>
+                    <th class="text-center">Mô tả</th>
+                    <th class="text-center">Hình ảnh</th>
+                    <th class="text-center">Giá gốc</th>
+                    <th class="text-center">Giá khuyến mãi</th>
+                    <th class="text-center">Chi tiết</th>
+                    <th class="text-center">SL trong kho</th>
+                    <th class="text-center">Mã nhóm NS</th>
+                    <th class="text-center">Mã chất lượng</th>
+                    <th class="text-center">Mã vị trí</th>
+                    <th class="text-center">Ngày tạo</th>
+                    <th class="text-center">Người tạo</th>
+                    <th class="text-center">Ngày sửa</th>
+                    <th class="text-center">Người sửa</th>
+                    <th class="text-center">Top hot</th>
+                    <th class="text-center">Hình ảnh vị trí</th>
+                    <th class="text-center">Linh vị trí</th>
+                    <th class="text-center">Link chi tiết</th>
+                    <th class="text-center">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody style="color: black">
+
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                <tr id="row_@Model[i].ma_ns">
+                    <td class="text-center">@(i + 1)</td>
+                    <td class="text-center">@Model[i].ma_ns</td>
+                    <td class="text-center">@Model[i].ten_ns</td>
+                    <td class="text-center">@Model[i].mo_ta</td>
+                    <td class="text-center">@Model[i].hinh_anh</td>
+                    <td class="text-center">@Model[i].gia_goc</td>
+                    <td class="text-center">@Model[i].gia_km</td>
+                    <td class="text-center">@Model[i].chi_tiet</td>
+                    <td class="text-center">@Model[i].sl_trong_kho</td>
+                    <td class="text-center">@Model[i].ma_nhom_ns</td>
+                    <td class="text-center">@Model[i].ma_chat_luong</td>
+                    <td class="text-center">@Model[i].ma_vi_tri</td>
+                    <td class="text-center">@Html.Name(@Model[i].tao_ngay.ToShortDateString())</td>
+                    <td class="text-center">@Model[i].tao_boi</td>
+                    <td class="text-center">@Html.Name(@Model[i].sua_ngay.ToShortDateString())</td>
+                    <td class="text-center">@Model[i].sua_boi</td>
+                    <td class="text-center">@Html.Name(@Model[i].top_hot.ToShortDateString())</td>
+                    <td class="text-center">@Model[i].hinh_anh_vt</td>
+                    <td class="text-center">@Model[i].link_anh</td>
+                    <td class="text-center">@Model[i].link_chi_tiet</td>
+                    <td class="text-center">
+                        @Ajax.ActionLink("Xóa", "Delete", new { @id = Model[i].ma_ns }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có chắc chắn muốn xóa?",
+                               OnComplete = "$('#row_" + @Model[i].ma_ns + "').remove()",
+                               HttpMethod = "Delete"
+                           })
+
+
+                        @*<a href="@Url.Action("Delete", new { id = Model[i].ID })"><i>Xóa</i></a>*@
+                        <a href="@Url.Action("Edit", new { id = Model[i].ma_ns })"><i>Sửa</i></a>
+                    </td>
+                </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+        <!-- Thêm mã phân trang -->
+        <br />
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))
+        <!-- Kết thúc -->
+    </div>
+
+
+

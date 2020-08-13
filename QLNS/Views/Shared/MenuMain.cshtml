@@ -1,0 +1,21 @@
+﻿@model List<QLNS.Models.EF.Menu>
+
+
+
+<ul class="nav navbar-nav collapse navbar-collapse">
+
+
+    @foreach (var item in Model)
+    {
+
+
+        <li class="active"><a href="@item.link">@item.tieu_de_menu</a></li>
+
+    }
+
+
+
+
+
+</ul>
+

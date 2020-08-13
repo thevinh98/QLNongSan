@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLNS", "QLNS.csproj", "{5D030052-2054-406C-AAB9-55136E6F889F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{CDD8FF02-6D21-4788-88C9-FA3BBBE86B66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D030052-2054-406C-AAB9-55136E6F889F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D030052-2054-406C-AAB9-55136E6F889F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D030052-2054-406C-AAB9-55136E6F889F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D030052-2054-406C-AAB9-55136E6F889F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDD8FF02-6D21-4788-88C9-FA3BBBE86B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDD8FF02-6D21-4788-88C9-FA3BBBE86B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDD8FF02-6D21-4788-88C9-FA3BBBE86B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDD8FF02-6D21-4788-88C9-FA3BBBE86B66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5C3CAA7-F234-4D0D-9023-8AE209082EA4}
+	EndGlobalSection
+EndGlobal

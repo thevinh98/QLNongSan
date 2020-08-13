@@ -1,0 +1,129 @@
+﻿@model QLNS.Models.EF.NongSan
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var dm = (QLNS.Models.EF.NhomN)ViewBag.NhNS;
+    var NongSanVT = (List<QLNS.Models.EF.NongSan>)ViewBag.NSVT;
+    var DLNongSan = (List<QLNS.Models.EF.DiaLy>)ViewBag.VitriNongSan;
+
+}
+@section GoToUrl
+{
+    <script>
+
+    </script>
+}
+
+<div class="product-details">
+    <!--product-details-->
+    <div class="col-sm-5">
+        <div class="view-product">
+            <h1>@Model.ten_ns</h1>
+
+            <img src="@Model.hinh_anh" alt="" style="width:100%; height:450px" /><hr />
+        </div>
+    </div>
+    <div class="col-sm-7">
+        <div class="product-information" style="margin-left:-20px; margin-top:-10px">
+            <!--/product-information-->
+            <h4 style="margin-left:-50px; margin-top:-50px">@Model.mo_ta </h4>
+            <img src="images/product-details/rating.png" alt="" />
+            <span>
+                <span>Giá gốc: @Model.gia_goc VNĐ/KG</span>
+                <label style="color:darkgreen">Giá khuyễn mãi: @Model.gia_km VNĐ/KG</label>
+                @*<button type="button" class="btn btn-fefault cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        Add to cart
+                    </button>*@
+                <a href="@Url.Action("AddItem", "ThanhPhanGH", new { ma_ns=Model.ma_ns, sl=1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+            </span>
+            <b>Số lượng trong kho:</b><span style="color:orangered; margin-left:10px; font-size:25px;">@Model.sl_trong_kho</span><br />
+            <b>Đăng ngày:</b><span style="color:orangered; margin-left:10px;">@Html.Name(Model.tao_ngay.ToShortDateString())</span><br />
+            <b>Sửa ngày:</b><span style="color:orangered; margin-left:10px;">@Html.Name(Model.sua_ngay.ToShortDateString())</span><hr />
+        </div><!--/product-information-->
+    </div>
+</div><!--/product-details-->
+
+<div class="category-tab shop-details-tab">
+    <!--category-tab-->
+
+    <div class="tab-content">
+
+        <div class="tab-pane fade active in" id="reviews">
+            <div class="col-sm-12">
+                <p style="font-size:20px; font-family:'Times New Roman', Times, serif">@Html.Name(Model.chi_tiet).ToHtmlString()</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+@foreach (var a in DLNongSan)
+{
+    <div class="container">
+        <a href="@Url.Action("Detail", "NongSan", new { id = a.ma_vi_tri })" onclick="window.open('@Model.link_anh', '_blank')"><a href="@a.ma_vi_tri" target="_blank" onclick="window.open('@Model.link_anh', '_blank')"><img src="@Model.hinh_anh_vt" style="width:850px; height:500px" /></a></a>
+        <br /><br /><h4>
+            Click vào bản đồ để biết rõ địa điểm từ Google Maps hoặc vào link dưới đây để biết thêm thông tin! <br />
+
+        </h4>
+        <a href="@Url.Action("Detail", "NongSan", new { id = a.ma_vi_tri })" onclick="window.open('@Model.link_chi_tiet', '_blank')"><a href="@a.ma_vi_tri" target="_blank" style="color:blue;font-size:20px" onclick="window.open('@Model.link_chi_tiet', '_blank')">@Model.link_chi_tiet</a></a>
+    </div>
+}
+
+
+
+<hr />
+<br />
+<div class="features_items">
+    <!--features_items-->
+    <h2 class="title text-center">Những nông sản liên quan</h2>
+
+    @foreach (var item in NongSanVT)
+    {
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="@item.hinh_anh" alt="" style="height:250px; width:100%" />
+                        <b>Giá gốc: @item.gia_goc vnđ/kg</b>
+                        <h5 style="color:blue">Giá KM: @item.gia_km vnđ/kg</h5>
+                        <p style="color:#16b91d">@item.ten_ns</p>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="overlay-content">
+                            <a href="@Url.Action("Detail", "NongSan", new { id = item.ma_ns })" class="btn btn-default view-product"><i class="fa fa-street-view"></i>Xem chi tiết</a>
+                            @*<a href="/them-gio-hang?ma_ns=@item.ma_ns&sl=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>*@
+                            <a href="@Url.Action("AddItem", "ThanhPhanGH", new { ma_ns=item.ma_ns, sl=1 })" class="btn btn-default add-to-cart"><button type="button" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i></button>Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+
+
+</div>
+<div class="section group">
+    <div class="col-md-12">
+        @using (Html.BeginForm("DangKy", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label style="color:black; font-size:25px">Nhận xét</label>
+                <textarea placeholder="Nhập nhận xét" rows="5" style="border-radius:5px; background-color:white; border:1px solid black"></textarea>
+            </div>
+            @*<a href="@Url.Action("DangKy", "Home", null)"><button type="submit" style="font-size:20px" class="btn">Đăng</button></a>*@
+            <a href="/Home/DangKy"><button type="submit" class="btn" style="font-size:20px" onclick="return confirm('Bạn cần đăng nhập để bình luận. Nếu chưa có hãy bấm vào nút đăng ký')">Đăng</button></a>
+        }
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+

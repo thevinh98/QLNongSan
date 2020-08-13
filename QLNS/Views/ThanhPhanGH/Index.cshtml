@@ -1,0 +1,69 @@
+﻿@model List<QLNS.Models.Function.TpGioHang>
+@*@model PagedList.IPagedList<QLNS.Models.Function.TpGioHang>
+@using PagedList.Mvc;*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section jsGH
+{
+    <script src="/Assets/client/controller/ghController.js"></script>
+}
+@if (Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr style="font-weight:bold">
+                <td>Mã nông sản</td>
+                <td>Tên nông sản</td>
+                <td>Ảnh</td>
+                <td>Số lượng</td>
+                <td>Đơn giá</td>
+                <td>Thành tiền</td>
+                <td>Thao tác</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nongsan.ma_ns</td>
+                    <td>@item.nongsan.ten_ns</td>
+                    <td><img src="@item.nongsan.hinh_anh" style="width:150px; height:100px" /></td>
+                    <td><input type="text" class="txtso_luong" data-id="@item.nongsan.ma_ns" value="@item.so_luong" style="width:80px" /></td>
+                    <td style="width:150px">@item.nongsan.gia_goc.GetValueOrDefault(0)</td>
+                    <td>@((item.nongsan.gia_goc.GetValueOrDefault(0) * item.so_luong))</td>
+                    <td><a href="#" data-id="@item.nongsan.ma_ns" class="btn-delete">Xóa</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <button id="btnTiepTuc" class="btn">Tiếp tục mua hàng</button>
+    <button id="btnCapNhat" class="btn">Cập nhật mua hàng</button>
+    <button id="btnXoa" class="btn">Xóa giỏ hàng</button>
+    <button id="btnThanhToan" class="btn">Thanh toán</button>
+    <!-- Thêm mã phân trang -->
+    <br />
+}
+
+else
+{
+    <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng</span>
+    <button id="btnTiepTuc" class="btn">Tiếp tục mua hàng</button>
+    <button id="btnCapNhat" class="btn">Cập nhật mua hàng</button>
+    <button id="btnXoa" class="btn">Xóa giỏ hàng</button>
+    <button id="btnThanhToan" class="btn">Thanh toán</button>
+    <br />
+
+
+
+}
+<!-- Kết thúc -->
+@*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index1",
+new { page }))
+}*@
+

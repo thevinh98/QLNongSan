@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Index_all";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ListNS = (List<QLNS.Models.EF.NongSan>)ViewBag.AllNS;
+}
+
+    <div class="features_items">
+        <!--features_items-->
+        <h2 class="title text-center">DANH SÁCH NÔNG SẢN</h2>
+        @foreach (var item in ListNS)
+        {
+            <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <img src="@item.hinh_anh" alt="" style="height:250px; width:100%" />
+                            <b>Giá gốc: @item.gia_goc vnđ/kg</b>
+                            <h5 style="color:blue">Giá KM: @item.gia_km vnđ/kg</h5>
+                            <p style="color:#16b91d">@item.ten_ns</p>
+                        </div>
+                        <div class="product-overlay">
+                            <div class="overlay-content">
+                                <a href="@Url.Action("Detail", "NongSan", new { id = item.ma_ns })" class="btn btn-default view-product"><i class="fa fa-street-view"></i>Xem chi tiết</a>
+                                <a href="@Url.Action("AddItem", "ThanhPhanGH", new { ma_ns=item.ma_ns, sl=1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàngs</a>
+                                @*<a href="/ThanhPhanGH" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>*@
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+
+
+
+
+
+
+
+
